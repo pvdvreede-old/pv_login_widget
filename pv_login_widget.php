@@ -23,7 +23,17 @@ class PV_Login_Widget extends WP_Widget {
 		echo $before_widget;
 		if ( $title )
 			echo $before_title . $title . $after_title; ?>
-		<p>Hello there</p>
+		<form class="form-stacked" method="post" action="http://localhost/wp-login.php">
+                <label for="log">Username:</label>
+		<input type="text" name="log" />
+		<label for="pwd">Password:</label>
+		<input type="password" name="pwd" />
+		
+		<input class="btn" type="submit" value="Log in" />
+		
+		<input type="hidden" name="redirect_to" value="http://localhost" />
+	
+                </form>
 		<?php echo $after_widget;
 	}
 
@@ -51,3 +61,5 @@ class PV_Login_Widget extends WP_Widget {
 	}
 
 }
+
+//register_widget('PV_Login_Widget');
