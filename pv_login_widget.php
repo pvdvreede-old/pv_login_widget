@@ -18,26 +18,28 @@ class PV_Login_Widget extends WP_Widget {
 
 	/** @see WP_Widget::widget */
 	function widget( $args, $instance ) {
-		extract( $args );
-		$title = apply_filters( 'widget_title', $instance['title'] );
-		echo $before_widget;
-		if ( $title )
-			echo $before_title . $title . $after_title; ?>
-		<form class="form-stacked" method="post" action="http://localhost/wp-login.php">
-                <label for="log">Username:</label>
-		<input type="text" name="log" />
-		<label for="pwd">Password:</label>
-		<input type="password" name="pwd" />
-		<p>
-		<input type="checkbox" name="rememberme" value="forever" />
-		<label for="rememberme">Remember me</label>
-		</p>
-		<input class="btn" type="submit" value="Log in" />
+		if ( !is_user_logged_in() ) {		
+			extract( $args );
+			$title = apply_filters( 'widget_title', $instance['title'] );
+			echo $before_widget;
+			if ( $title )
+				echo $before_title . $title . $after_title; ?>
+			<form class="form-stacked" method="post" action="http://localhost/wp-login.php">
+					<label for="log">Username:</label>
+			<input type="text" name="log" />
+			<label for="pwd">Password:</label>
+			<input type="password" name="pwd" />
+			<p>
+			<input type="checkbox" name="rememberme" value="forever" />
+			<label for="rememberme">Remember me</label>
+			</p>
+			<input class="btn" type="submit" value="Log in" />
+			
+			<input type="hidden" name="redirect_to" value="http://localhost" />
 		
-		<input type="hidden" name="redirect_to" value="http://localhost" />
-	
-        </form>
-		<?php echo $after_widget;
+			</form>
+			<?php echo $after_widget;
+		}
 	}
 
 	/** @see WP_Widget::update */
