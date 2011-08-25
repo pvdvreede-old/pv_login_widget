@@ -12,8 +12,8 @@ add_action( 'widgets_init', create_function( '', 'return register_widget("PV_Log
 
 class PV_Login_Widget extends WP_Widget {
 	/** constructor */
-	function FooWidget() {
-		parent::WP_Widget( 'pv_login_widget', $name = 'PV Login Widget' );
+	function PV_Login_Widget() {
+		parent::WP_Widget( 'pv_login_widget', $name='PV Login Widget' );
 	}
 
 	/** @see WP_Widget::widget */
