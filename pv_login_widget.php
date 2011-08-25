@@ -28,12 +28,15 @@ class PV_Login_Widget extends WP_Widget {
 		<input type="text" name="log" />
 		<label for="pwd">Password:</label>
 		<input type="password" name="pwd" />
-		
+		<p>
+		<input type="checkbox" name="rememberme" value="forever" />
+		<label for="rememberme">Remember me</label>
+		</p>
 		<input class="btn" type="submit" value="Log in" />
 		
 		<input type="hidden" name="redirect_to" value="http://localhost" />
 	
-                </form>
+        </form>
 		<?php echo $after_widget;
 	}
 
