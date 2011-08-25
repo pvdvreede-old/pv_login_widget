@@ -38,6 +38,8 @@ class PV_Login_Widget extends WP_Widget {
 			<input type="hidden" name="redirect_to" value="http://localhost" />
 		
 			</form>
+			
+			<p><a href="<?php echo get_bloginfo('url'); ?>/wp-login.php?action=lostpassword">Lost your password?</a></p>
 			<?php echo $after_widget;
 		}
 	}
