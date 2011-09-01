@@ -1,10 +1,10 @@
 <?php
 /*
-  Plugin Name: pv_login_widget
+  Plugin Name: Login Widget
   Plugin URI: http://www.vdvreede.net
   Description: Plugin that creates a widget for logging in.
   Author: Paul Van de Vreede
-  Version: 1
+  Version: 0.9
   Author URI: http://www.vdvreede.net
  */
 
@@ -14,7 +14,7 @@ class PV_Login_Widget extends WP_Widget {
 
     /** constructor */
     function PV_Login_Widget() {
-        parent::WP_Widget('pv_login_widget', $name = 'PV Login Widget');
+        parent::WP_Widget('pv_login_widget', $name = 'Login Widget');
     }
 
     /** @see WP_Widget::widget */
@@ -27,7 +27,7 @@ class PV_Login_Widget extends WP_Widget {
 
         if (!is_user_logged_in()) {
             ?>
-            <form class="form-stacked" method="post" action="http://localhost/wp-login.php">
+            <form class="form-stacked" method="post" action="<?php echo get_bloginfo('url'); ?>/wp-login.php">
                 <label for="log">Username:</label>
                 <input type="text" name="log" />
                 <label for="pwd">Password:</label>
@@ -38,8 +38,7 @@ class PV_Login_Widget extends WP_Widget {
                 </p>
                 <input class="btn" type="submit" value="Log in" />
 
-                <input type="hidden" name="redirect_to" value="http://localhost" />
-
+                <input type="hidden" name="redirect_to" value="<?php echo get_bloginfo('url'); ?>" />
             </form>
 
             <p><a href="<?php echo get_bloginfo('url'); ?>/wp-login.php?action=lostpassword">Lost your password?</a></p>
