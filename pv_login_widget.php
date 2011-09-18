@@ -20,7 +20,7 @@ class PV_Login_Widget extends WP_Widget {
     /** @see WP_Widget::widget */
     function widget($args, $instance) {
         extract($args);
-        $title = apply_filters('widget_title', $instance['title']);
+        $title = (is_user_logged_in()) ? apply_filters('widget_title', $instance['login_title']) : apply_filters('widget_title', $instance['logout_title']);
         echo $before_widget;
         if ($title)
             echo $before_title . $title . $after_title;
@@ -60,21 +60,25 @@ class PV_Login_Widget extends WP_Widget {
     /** @see WP_Widget::update */
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
-        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['login_title'] = strip_tags($new_instance['login_title']);
+        $instance['logout_title'] = strip_tags($new_instance['logout_title']);
         return $instance;
     }
 
     /** @see WP_Widget::form */
     function form($instance) {
         if ($instance) {
-            $title = esc_attr($instance['title']);
+            $login_title = esc_attr($instance['login_title']);
+            $logout_title = esc_attr($instance['logout_title']);
         } else {
             $title = __('New title', 'text_domain');
         }
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
-            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+            <label for="<?php echo $this->get_field_id('login_title'); ?>"><?php _e('Logged in Title:'); ?></label> 
+            <input class="widefat" id="<?php echo $this->get_field_id('login_title'); ?>" name="<?php echo $this->get_field_name('login_title'); ?>" type="text" value="<?php echo $login_title; ?>" />
+            <label for="<?php echo $this->get_field_id('logout_title'); ?>"><?php _e('Logged out Title:'); ?></label> 
+            <input class="widefat" id="<?php echo $this->get_field_id('logout_title'); ?>" name="<?php echo $this->get_field_name('logout_title'); ?>" type="text" value="<?php echo $logout_title; ?>" />
         </p>
         <?php
     }
