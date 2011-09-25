@@ -51,7 +51,7 @@ class PV_Login_Widget extends WP_Widget {
             <?php if (current_user_can('edit_posts')) : ?>
             <li><a href="<?php echo get_bloginfo('url'); ?>/wp-admin/">Administration</a></li>
             <?php endif; ?>
-            <li><a href="<?php echo wp_logout_url( ); ?> ">Logout</a></li>       
+            <li><a href="<?php echo wp_logout_url( home_url() ); ?> ">Logout</a></li>       
             </ul>
             <?php
         }
