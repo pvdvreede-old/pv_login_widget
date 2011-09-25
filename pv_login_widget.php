@@ -46,11 +46,13 @@ class PV_Login_Widget extends WP_Widget {
         } else {
             $current_user = wp_get_current_user();
             ?>
-            <p>Welcome back, <?php echo $current_user->user_login; ?>.</p>
+            <ul>
+            <li>Welcome back, <?php echo (isset($current_user->first_name) && $current_user->first_name != '') ? $current_user->first_name : $current_user->nickname; ?>.</li>
             <?php if (current_user_can('edit_posts')) : ?>
-            <p><a href="<?php echo get_bloginfo('url'); ?>/wp-admin/">Administration</a></p>
+            <li><a href="<?php echo get_bloginfo('url'); ?>/wp-admin/">Administration</a></li>
             <?php endif; ?>
-            <p><a href="<?php echo wp_logout_url( ); ?> ">Logout</a></p>           
+            <li><a href="<?php echo wp_logout_url( ); ?> ">Logout</a></li>       
+            </ul>
             <?php
         }
 
